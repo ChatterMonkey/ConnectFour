@@ -1,0 +1,10 @@
+[package]
+name = "connect4"
+version = "0.1.0"
+authors = ["mayabasu"]
+edition = "2018"
+
+[dependencies]
+ndarray = "0.12.1"
+termcolor = "1"
+random-integer = "1.0.2"
