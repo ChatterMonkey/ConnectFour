@@ -4,20 +4,19 @@ extern crate random_integer;
 
 
 
-use std::io::Write;
-use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
-use ndarray::prelude::*;
-use std::io;
+
+
 
 
 impl matrix{
+
     pub fn zeros_matrix(cols: usize, rows: usize)-> matrix{
         matrix{cols:cols, rows:rows, data: vec![0.0; rows*cols]}
     }
 
     pub fn get(&self, y: usize, x:usize)->f32{
-        //   assert!(self.cols > x);
-        //   assert!(self.rows >y);
+           assert!(self.cols > x);
+          assert!(self.rows >y);
         self.data[self.cols*y+x]
     }
     pub fn set(&mut self, y:usize, x:usize, value:f32){
@@ -39,6 +38,20 @@ impl matrix{
         }
         return c;
     }
+    pub fn times_a_vector(&self, b: &Vec<f32>) -> Vec<f32>{
+        assert!(b.len() == self.cols);
+        let mut vector:Vec<f32> = Vec::with_capacity(self.rows);
+        for i in 0..self.rows{
+
+                let mut sum:f32 = 0.0;
+                for k in 0..self.cols{
+                    sum = sum + self.get(i, k)*b[k];
+                }
+                vector.push(sum);
+
+        }
+        return vector;
+    }
     pub fn print_matrix(&self){
         for y in 0..self.rows {
             for x in 0..self.cols {
@@ -49,12 +62,22 @@ impl matrix{
         }
         println!();
     }
+
 }
 
+pub fn matrix_from(columns: usize,cells: Vec<f32>) -> matrix{
+    let length = cells.len();
+    assert!(length%columns == 0);
+    matrix{cols:columns, rows:length/columns, data:cells}
+
+
+}
+
+#[derive(Clone)]
 pub struct matrix{
-    cols: usize,
-    rows: usize,
-    data: Vec<f32>,
+    pub cols: usize,
+    pub rows: usize,
+    pub data: Vec<f32>,
 }
 
 

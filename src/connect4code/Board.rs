@@ -6,34 +6,39 @@ use super::Matrix::matrix;
 
 use std::io::Write;
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
-use ndarray::prelude::*;
-use std::io;
+
+
 
 pub enum Pieces{
     Player1,
     Player2,
     Nada,
 }
-pub const ROWS: usize = 10;
-pub const COLUMNS: usize = 10;
+
+pub const ROWS: usize = 6;
+pub const COLUMNS: usize = 7;
 
 pub fn print_board(board: &Board) -> &Board{
     for y in 0..ROWS {
         for x in 0..COLUMNS {
             if board.get(y,x) == 0.0{
                 let mut stdout = StandardStream::stdout(ColorChoice::Always);
-                stdout.set_color(ColorSpec::new().set_fg(Some(Color::White)));
+                stdout.set_color(ColorSpec::new().set_fg(Some(Color::White)))
+                    .expect("Could not set color, error.");
                 write!(&mut stdout, "( )");
 
             }
             if board.get(y,x) == -0.5{
                 let mut stdout = StandardStream::stdout(ColorChoice::Always);
-                stdout.set_color(ColorSpec::new().set_fg(Some(Color::Red)));
+                stdout.set_color(ColorSpec::new().set_fg(Some(Color::Red)))
+                    .expect("Could not set color, error.");
                 write!(&mut stdout, "(0)");
             }
             if board.get(y,x) == 0.5{
                 let mut stdout = StandardStream::stdout(ColorChoice::Always);
-                stdout.set_color(ColorSpec::new().set_fg(Some(Color::Blue)));
+                stdout.set_color(ColorSpec::new().set_fg(Some(Color::Blue)))
+                    .expect("Could not set color, error.");
+
                 write!(&mut stdout, "(0)");
 
             }
@@ -189,7 +194,7 @@ pub fn right_count_piece(board:&Board, piece_y:usize, piece_x: usize)->usize{
     let piece_type = board.get(piece_y,piece_x);
     //  println!("Piece type is {}, checking right", piece_type);
     let mut num_on_right_cen:usize = 0;
-    if piece_x > COLUMNS - 4{
+    if piece_x +4 > COLUMNS {
         //   println!("We think that piece_x > COLUMNS -3");
         for  space_check in piece_x..COLUMNS{
 
@@ -353,11 +358,25 @@ pub fn check_for_diagonal_win_dr(board:&Board, piece_y:usize, piece_x:usize) -> 
 
 pub fn play_connect_four<P1: Player, P2: Player>(player1:P1, player2:P2){
     let board = &mut matrix::zeros_matrix(COLUMNS,ROWS);
-    let player1_move = player1.query(board);
-    let player2_move = player2.query(board);
-    place_piece(board,player1_move,Pieces::Player1);
-    place_piece(board, player2_move, Pieces::Player2);
-    print_board(board);
+    let mut game_over = false;
+    while game_over == false{
+        let player1_move = player1.query(board);
+        let player1_tup = place_piece(board,player1_move,Pieces::Player1);
+        game_over = check_for_win(board, player1_tup.0, player1_tup.1);
+        print_board(board);
+
+        if game_over == true{
+            continue;
+        }
+
+
+        let player2_move = player2.query(board);
+        let player2_tup = place_piece(board, player2_move, Pieces::Player2);
+        game_over = check_for_win(board, player2_tup.0, player2_tup.1);
+        print_board(board);
+
+
+    }
 
 
 
@@ -365,7 +384,7 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:P1, player2:P2){
 
 
 pub trait Player {
-    fn query(& self,board: &mut Board )-> usize;
+    fn query(& self,board: &mut Board)-> usize;
     fn add_win(&mut self, points: usize);
 }
 

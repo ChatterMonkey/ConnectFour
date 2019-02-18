@@ -3,15 +3,21 @@ extern crate termcolor;
 extern crate random_integer;
 
 
-
+use super::Board::*;
 use std::io::Write;
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use ndarray::prelude::*;
 use std::io;
 
+pub struct Human{}
+impl Player for Human{
+    fn query(&self, board: &mut Board)-> usize{
+        get_human_move(board)
+    }
+    fn add_win(&mut self, points:usize){}
+}
 
-
-fn get_human_move(board:&Board) -> usize{
+pub fn get_human_move(board:&Board) -> usize{
     //get a move from a human player
 
 

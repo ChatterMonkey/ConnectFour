@@ -2,16 +2,14 @@ extern crate ndarray;
 extern crate termcolor;
 extern crate random_integer;
 
-
+use super::Matrix::*;
 use super::Board::*;
-use std::io::Write;
-use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
-use ndarray::prelude::*;
-use std::io;
+
+
 struct FakeHuman{}
 
 impl Player for FakeHuman{
-    fn query(& self,board: &mut Board )-> usize{
+    fn query(& self,board: &mut Board)-> usize{
         fake_human_query(board)
 
     }
@@ -143,7 +141,7 @@ pub fn fake_human_query( board: &mut Board)-> usize{
         return can_win_in_two_turns.0;
     }
     else{
-        let randint = random_integer::random_usize(0, 6);
+        let randint = random_integer::random_usize(0, COLUMNS-1);
         //  println!("my move is {}", randint);
         return randint;
     }
