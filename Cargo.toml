@@ -8,4 +8,10 @@ edition = "2018"
 ndarray = "0.12.1"
 termcolor = "1"
 random-integer = "1.0.2"
-random = "0.12.2"
+
+rand = "0.6.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.38"
+
+
+file = "1.1.2"

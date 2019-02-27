@@ -8,7 +8,7 @@ use std::io::Write;
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use ndarray::prelude::*;
 use std::io;
-
+#[derive(Clone)]
 pub struct Human{}
 impl Player for Human{
     fn query(&self, board: &mut Board)-> usize{

@@ -6,7 +6,7 @@ use super::Matrix::*;
 use super::Board::*;
 
 
-struct FakeHuman{}
+pub struct FakeHuman{}
 
 impl Player for FakeHuman{
     fn query(& self,board: &mut Board)-> usize{

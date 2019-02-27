@@ -1,7 +1,7 @@
 extern crate ndarray;
 extern crate termcolor;
 extern crate random_integer;
-
+use serde::{Serialize, Deserialize};
 
 
 
@@ -72,6 +72,7 @@ pub fn matrix_from(columns: usize,cells: Vec<f32>) -> matrix{
 
 
 }
+#[derive(Serialize, Deserialize, Debug)]
 
 #[derive(Clone)]
 pub struct matrix{

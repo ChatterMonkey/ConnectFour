@@ -8,13 +8,17 @@ use std::io::Write;
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 
+pub trait Player {
+    fn query(& self,board: &mut Board)-> usize;
+    fn add_win(&mut self, points: usize);
+}
 
 pub enum Pieces{
     Player1,
     Player2,
     Nada,
 }
-
+pub type Board = matrix;
 pub const ROWS: usize = 6;
 pub const COLUMNS: usize = 7;
 
@@ -39,7 +43,7 @@ pub fn print_board(board: &Board) -> &Board{
                 stdout.set_color(ColorSpec::new().set_fg(Some(Color::Blue)))
                     .expect("Could not set color, error.");
 
-                write!(&mut stdout, "(0)");
+                write!(&mut stdout, "(0)").expect("Error writing to stdout");
 
             }
 
@@ -50,7 +54,7 @@ pub fn print_board(board: &Board) -> &Board{
     board
 }
 
-pub type Board = matrix;
+
 
 pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> (usize,usize){
 
@@ -77,7 +81,6 @@ pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> 
 
 
 }
-
 
 pub fn check_for_win(board:&Board, piece_y:usize,piece_x:usize) -> bool{
     let hoz_win = check_for_horizontal_win(board,piece_y,piece_x);
@@ -116,8 +119,6 @@ pub fn check_for_vertical_win( board:&Board, piece_y:usize,piece_x:usize) -> boo
 
 }
 
-
-
 pub fn check_for_horizontal_win( board:&Board, piece_y:usize, piece_x:usize)-> bool{
 
     // counting pieces of same value to the left
@@ -136,8 +137,6 @@ pub fn check_for_horizontal_win( board:&Board, piece_y:usize, piece_x:usize)-> b
     }
 
 } //relies on left_count_piece and right_count_piece
-
-
 
 pub fn left_count_piece(board:&Board, piece_y:usize, piece_x:usize) ->usize{
     //println!("YOu have given y:{} x: {}", piece_y, piece_x);
@@ -356,36 +355,57 @@ pub fn check_for_diagonal_win_dr(board:&Board, piece_y:usize, piece_x:usize) -> 
     }
 }
 
-pub fn play_connect_four<P1: Player, P2: Player>(player1:P1, player2:P2){
+pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, display:bool )-> (usize, usize){
+
     let board = &mut matrix::zeros_matrix(COLUMNS,ROWS);
     let mut game_over = false;
+    let mut turns:usize = 0;
+
+
     while game_over == false{
         let player1_move = player1.query(board);
         let player1_tup = place_piece(board,player1_move,Pieces::Player1);
         game_over = check_for_win(board, player1_tup.0, player1_tup.1);
-        print_board(board);
+        if display{
+            print_board(board);
+            println!("game over = {}", game_over);
+
+        }
+
 
         if game_over == true{
-            continue;
+
+            if display {
+                println!("game over = {}", game_over);
+            }
+            return (82, turns);
+            break;
         }
 
 
         let player2_move = player2.query(board);
         let player2_tup = place_piece(board, player2_move, Pieces::Player2);
         game_over = check_for_win(board, player2_tup.0, player2_tup.1);
-        print_board(board);
+        if game_over == true{
 
+            if display {
+                println!("game over = {}", game_over);
+            }
+            return (turns, 84);
+            break;
+        }
 
+        //print_board(board);
+        turns = turns + 1;
     }
+    return (42,42);
 
 
 
 }
 
-
-pub trait Player {
-    fn query(& self,board: &mut Board)-> usize;
-    fn add_win(&mut self, points: usize);
+pub fn check_if_column_is_full(board:&Board, possible_move:usize)-> bool {
+    0.0 != board.get(0, possible_move)
 }
 
 
