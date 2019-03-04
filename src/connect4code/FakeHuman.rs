@@ -5,7 +5,7 @@ extern crate random_integer;
 use super::Matrix::*;
 use super::Board::*;
 
-
+#[derive(Clone)]
 pub struct FakeHuman{}
 
 impl Player for FakeHuman{

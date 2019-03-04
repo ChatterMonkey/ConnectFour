@@ -9,12 +9,16 @@ use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use ndarray::prelude::*;
 use std::io;
 #[derive(Clone)]
-pub struct Human{}
+pub struct Human{
+    pub points: usize,
+}
 impl Player for Human{
     fn query(&self, board: &mut Board)-> usize{
         get_human_move(board)
     }
-    fn add_win(&mut self, points:usize){}
+    fn add_win(&mut self, points:usize){
+        self.points = self.points + points;
+    }
 }
 
 pub fn get_human_move(board:&Board) -> usize{

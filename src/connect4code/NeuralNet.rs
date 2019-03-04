@@ -11,7 +11,6 @@ use rand::Rng;
 
 
 
-// ANN dimensions
 use rand::prelude::*;
 use super::Params::*;
 
@@ -23,6 +22,7 @@ pub struct NeuralNet{
     pub w_h1h2: matrix,
     pub w_h2h3: matrix,
     pub w_h3o: matrix,
+
 
 }
 pub enum Layers{
@@ -45,11 +45,6 @@ impl Player for NeuralNet{
         //insure that the matrices are compatable;
 //        println!("len of inputs {}", inputs.len());
         assert_eq!(self.w_ih1.cols, inputs.len());
-
-
-
-
-
 
         // multiply the inputs by the weights from the input layer to the hidden layer
         let inputs_to_h1 = self.w_ih1.times_a_vector(inputs);
@@ -152,6 +147,9 @@ pub fn find_max_entry(vector: &Vec<f32>)-> (f32, usize){
 
 
 impl NeuralNet{
+    pub fn serialize(&mut self, path:String){
+
+    }
 
 
     pub fn mutate(&mut self, mutation_magnitude:f32){
@@ -163,10 +161,24 @@ impl NeuralNet{
             for y in 0..layer_id[layer].rows{
                 for x in 0..layer_id[layer].cols{
                     value = rand::thread_rng().gen();
+                    //println!("value increment is {}", value);
                     orig = layer_id[layer].get(y,x);
 
+                    if (value+orig)*mutation_magnitude > 1.0 {
+                        layer_id[layer].set(y,x,1.0);
 
-                    layer_id[layer].set(y,x,value+orig);
+                    }
+                    if(value+orig)*mutation_magnitude < -1.0 {
+                        layer_id[layer].set(y,x,-1.0);
+
+                    }
+                    else{
+                        layer_id[layer].set(y,x,(value+orig)*mutation_magnitude);
+                    }
+
+
+
+                //    println!("{}",(value+orig)*mutation_magnitude)
                 }
             }
         }

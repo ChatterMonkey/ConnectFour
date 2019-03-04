@@ -374,11 +374,12 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
 
 
         if game_over == true{
+            turns = turns + 1;
 
             if display {
                 println!("game over = {}", game_over);
             }
-            return (82, turns);
+            return (84, turns);
             break;
         }
 
@@ -387,11 +388,12 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
         let player2_tup = place_piece(board, player2_move, Pieces::Player2);
         game_over = check_for_win(board, player2_tup.0, player2_tup.1);
         if game_over == true{
+            turns = turns + 1;
 
             if display {
                 println!("game over = {}", game_over);
             }
-            return (turns, 84);
+            return (turns,84);
             break;
         }
 

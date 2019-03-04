@@ -1,36 +1,62 @@
 use super::Params::*;
 use super::NeuralNet::NeuralNet;
 use std::string::*;
-use std::fmt::Write;
+
+
 use super::Board::play_connect_four;
-
+use super::Matrix::matrix;
 use crate::connect4code::Board::Player;
+use super::FakeHuman::FakeHuman;
+use std::f32::*;
+use std::u64::*;
+use std::thread;
+use std::f64::consts::E;
+use super::file_manager::*;
+use std::fs::*;
+use std::fmt::Write;
+use std::io::prelude::*;
+pub fn execute_genetic_algorithm(scores_file_path_name:String){
 
-pub fn execute_genetic_algorithm(){
-    let initial_seed = NeuralNet::zeros_neural_net();
+    let mut scores_file = File::create(scores_file_path_name).unwrap();
+    let benchmark = FakeHuman{};
+    let mut initial_seed = NeuralNet::zeros_neural_net();
+
+    let a:f32 = -0.00007; //adjust the rate of change for the mutation_magnitude
+
+
     for generation in 0..NUMBER_OF_GENERATIONS{
+        let gen64 = generation as f32;
 
-        let mut pool = vec![initial_seed.clone()];
+        let mut pool = vec!(initial_seed);
 
         for member in 0..GENERATION_SIZE{
-            let mut seed_copy = initial_seed.clone();
-            seed_copy.mutate(1.0);
+
+            let mut seed_copy = pool[0].clone();
+
+            let mutation_magnitude = (gen64*a).exp()/2.0;
+            //println!("mutation magnitude = {}", mutation_magnitude);
+
+            seed_copy.mutate(mutation_magnitude);
+
+
+
             let mut net_name = String::new();
             writeln!(net_name, "{}_{}",member,generation).unwrap();
 
 
             seed_copy.name = net_name;
+
             pool.push(seed_copy);
 
-        }
-   //     println!("done");
-        pool.push(initial_seed.clone());
-    //    println!("done pushing");
+        }  // create the pool
+
 
 
         for i in 0..GENERATION_SIZE+1{
-            for j in i+1..GENERATION_SIZE+1{
-
+            for j in 0..GENERATION_SIZE+1{
+                if i == j{
+                    continue;
+                }
                 let (player1_score, player2_score) = play_connect_four(&pool[i], &pool[j], false);
                 {
                     let mut net1 = &mut pool[i];
@@ -38,35 +64,55 @@ pub fn execute_genetic_algorithm(){
                     net1.add_win(player1_score);
                    // println!("net1 score: {}", net1.points);
                 }
-
                 {
                     let mut net2 = &mut pool[j];
                     net2.add_win(player2_score);
 
                 }
+            }
+        } // Battle!
 
-                let (player2_score, player1_score) = play_connect_four(&pool[j], &pool[i], false);
-                {
-                    let mut net1 = &mut pool[j];
-                    net1.add_win(player1_score);
-                }
-                {
-                    let mut net2 = &mut pool[i];
-                    net2.add_win(player2_score);
 
-                }
+        let winner_index = highest_point_network(&pool);
+        initial_seed = pool[winner_index].clone();
+
+        if generation%10 == 0 {
+            let (_bench_points1, seed_points1) = play_connect_four(&benchmark, &initial_seed,false);
+            let (_bench_points2, seed_points2) = play_connect_four(&benchmark, &initial_seed,false);
+            let (_bench_points3, seed_points3) = play_connect_four(&benchmark, &initial_seed,false);
+
+            let mut data = (seed_points1+seed_points2+seed_points3)/3;
+            println!("wrote {} to file", data);
+            write_usize(data,&mut scores_file);
+
+            if generation%100 ==0{
 
             }
-        }
-     //   println!("done playing")
 
-        for net in 0..GENERATION_SIZE{
-            print!(" {} ", pool[net].points)
         }
-        println!("");
+
+        initial_seed.points = 0;
+
+
+
+
+
 
     }
 
     println!("genetic algorithm done");
 
 }
+
+
+pub fn highest_point_network( list:&Vec<NeuralNet> )-> usize{
+    let mut winner_index = 0;
+    for i in 1..list.len(){
+        if &list[i].points > &list[winner_index].points{
+            winner_index = i;
+        }
+    }
+    return winner_index;
+
+
+} //get the index of the ANN with the most points
