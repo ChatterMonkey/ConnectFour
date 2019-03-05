@@ -15,9 +15,9 @@ use super::file_manager::*;
 use std::fs::*;
 use std::fmt::Write;
 use std::io::prelude::*;
-pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:NeuralNet){
+pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:NeuralNet, run_id:usize){
 
-    let mut scores_file = File::create(scores_file_path_name).unwrap();
+    let mut scores_file = File::create(format!("{}_{}", run_id, scores_file_path_name)).unwrap();
     let benchmark = FakeHuman{};
     let mut initial_seed = starting_net;
 
@@ -72,27 +72,39 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:Neur
             }
         } // Battle!
 
+       // pool[19].points = pool[19].points + 1000;
+
 
         let winner_index = highest_point_network(&pool);
+      //  println!("winner index is {}", &winner_index);
+
         initial_seed = pool[winner_index].clone();
+      //  println!("ownership moved");
+
 
         if generation%10 == 0 {
+          //  println!("generation is multiple of 10");
             //for member in &pool{
           //      println!("net score in pool is {}", &member.points);
          //   }
             let (bench_points1, seed_points1) = play_connect_four(&benchmark, &initial_seed,false);
             let (bench_points2, seed_points2) = play_connect_four(&benchmark, &initial_seed,false);
             let (bench_points3, seed_points3) = play_connect_four(&benchmark, &initial_seed,false);
+           // println!("benchmark tests past");
+
+
           //  println!(" 1fakehuman points{} ann points{}", bench_points1, seed_points1);
           //  println!("2fakehuman points{} ann points{}", bench_points2, seed_points2);
           //  println!("3fakehuman points{} ann points{}", bench_points3, seed_points3);
 
             let mut data = (seed_points1+seed_points2+seed_points3)/3;
+           // println!("data is {}", &data);
           //  println!("wrote {} to file, {} won", data, winner_index);
             write_usize(data,&mut scores_file);
 
             if generation%500 ==0{
-                pool[winner_index + 1].clone().serialize(format!("GW{}", generation))
+                pool[winner_index ].clone().serialize(format!("{}_GW{}", run_id, generation));
+                //println!("{}_GW{}", run_id, generation);
 
             }
 
@@ -114,7 +126,10 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:Neur
 
 pub fn highest_point_network( list:&Vec<NeuralNet> )-> usize{
     let mut winner_index = 0;
+
     for i in 1..list.len(){
+      //  println!("{}", i);
+
         if &list[i].points > &list[winner_index].points{
             winner_index = i;
         }

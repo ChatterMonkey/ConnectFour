@@ -27,7 +27,7 @@ fn main() {
 
     let starting_net = connect4code::NeuralNet::NeuralNet::zeros_neural_net();
 
-    connect4code::Moderator::execute_genetic_algorithm(String::from("scores_20_000.txt"), starting_net);
+    connect4code::Moderator::execute_genetic_algorithm(String::from("scores.txt"), starting_net, 0);
 
 
 
