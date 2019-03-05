@@ -15,9 +15,9 @@ use super::file_manager::*;
 use std::fs::*;
 use std::fmt::Write;
 use std::io::prelude::*;
-pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:NeuralNet, run_id:usize){
+pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
 
-    let mut scores_file = File::create(format!("{}_{}", run_id, scores_file_path_name)).unwrap();
+    let mut scores_file = File::create(format!("{}_scores.txt", run_id)).unwrap();
     let benchmark = FakeHuman{};
     let mut initial_seed = starting_net;
 
@@ -103,6 +103,8 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:Neur
             write_usize(data,&mut scores_file);
 
             if generation%500 ==0{
+                //println!("appending...");
+
                 pool[winner_index ].clone().serialize(format!("{}_GW{}", run_id, generation));
                 //println!("{}_GW{}", run_id, generation);
 
