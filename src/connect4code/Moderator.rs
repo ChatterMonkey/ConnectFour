@@ -34,7 +34,7 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:Neur
             let mut seed_copy = pool[0].clone();
 
             let mutation_magnitude = (-1.0*gen32*a).exp();
-            println!("mutation magnitude = {}", mutation_magnitude);
+            //println!("mutation magnitude = {}", mutation_magnitude);
 
             seed_copy.mutate(mutation_magnitude);
 
