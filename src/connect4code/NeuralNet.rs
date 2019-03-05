@@ -2,7 +2,7 @@ extern crate ndarray;
 extern crate termcolor;
 extern crate random_integer;
 use serde::{Serialize, Deserialize};
-
+use super::file_manager::*;
 use super::Matrix::*;
 use super::Matrix::matrix;
 use super::Board::*;
@@ -149,6 +149,8 @@ pub fn find_max_entry(vector: &Vec<f32>)-> (f32, usize){
 impl NeuralNet{
     pub fn serialize(&mut self, path:String){
 
+        write_text(&serde_json::to_string(&self).unwrap(), &path);
+
     }
 
 
@@ -178,7 +180,7 @@ impl NeuralNet{
 
 
 
-                //    println!("{}",(value+orig)*mutation_magnitude)
+                   // println!(" set to {}",(value+orig)*mutation_magnitude)
                 }
             }
         }

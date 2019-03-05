@@ -14,11 +14,12 @@ pub fn reconstitute(text: &String) -> NeuralNet {
     new_net
 }
 
-pub fn write_text(text: &String, path_name: &String) -> Result<String> {
-    let s = String::new();
-    let mut f = File::create(path_name)?;
-    f.write_all(text.as_bytes())?;
-    Ok(s)
+
+pub fn write_text(text: &String, path_name: &String){
+
+    let mut f = File::create(path_name).expect("could not open file, write_text failed");
+    f.write_all(text.as_bytes());
+
 }
 
 pub fn push_text(text: &String, path_name: &String)-> Result<String> {
@@ -40,7 +41,6 @@ pub fn read_text(path_name: &String) -> Result<String> {
 
 
 pub fn write_usize(data:usize, file: &mut File){
-
     file.write_fmt(format_args!("{} \n", data));
-
 }
+

@@ -25,26 +25,13 @@ fn main() {
 
     let now = Instant::now();
 
+    let starting_net = connect4code::NeuralNet::NeuralNet::zeros_neural_net();
 
-
-    connect4code::Moderator::execute_genetic_algorithm(String::from("scores.txt"));
+    connect4code::Moderator::execute_genetic_algorithm(String::from("scores_20_000.txt"), starting_net);
 
 
 
     println!("{}", now.elapsed().as_secs());
-
-    let mut test_board = connect4code::Matrix::matrix::zeros_matrix(7,6);
-    test_board.set(0,0,1.0);
-
-
-
-
-
-
-
-
-   // connect4code::Board::play_connect_four(&human, &ANN);
-    //connect4code::Board::play_connect_four(&human, &fakey);
 
 
 

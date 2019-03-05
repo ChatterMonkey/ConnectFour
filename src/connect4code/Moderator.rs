@@ -15,17 +15,17 @@ use super::file_manager::*;
 use std::fs::*;
 use std::fmt::Write;
 use std::io::prelude::*;
-pub fn execute_genetic_algorithm(scores_file_path_name:String){
+pub fn execute_genetic_algorithm(scores_file_path_name:String, starting_net:NeuralNet){
 
     let mut scores_file = File::create(scores_file_path_name).unwrap();
     let benchmark = FakeHuman{};
-    let mut initial_seed = NeuralNet::zeros_neural_net();
+    let mut initial_seed = starting_net;
 
-    let a:f32 = -0.00007; //adjust the rate of change for the mutation_magnitude
+    let a:f32 = -((0.0001f32).ln())/(NUMBER_OF_GENERATIONS as f32); //adjust the rate of change for the mutation_magnitude
 
 
     for generation in 0..NUMBER_OF_GENERATIONS{
-        let gen64 = generation as f32;
+        let gen32 = generation as f32;
 
         let mut pool = vec!(initial_seed);
 
@@ -33,8 +33,8 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String){
 
             let mut seed_copy = pool[0].clone();
 
-            let mutation_magnitude = (gen64*a).exp()/2.0;
-            //println!("mutation magnitude = {}", mutation_magnitude);
+            let mutation_magnitude = (-1.0*gen32*a).exp();
+            println!("mutation magnitude = {}", mutation_magnitude);
 
             seed_copy.mutate(mutation_magnitude);
 
@@ -77,15 +77,22 @@ pub fn execute_genetic_algorithm(scores_file_path_name:String){
         initial_seed = pool[winner_index].clone();
 
         if generation%10 == 0 {
-            let (_bench_points1, seed_points1) = play_connect_four(&benchmark, &initial_seed,false);
-            let (_bench_points2, seed_points2) = play_connect_four(&benchmark, &initial_seed,false);
-            let (_bench_points3, seed_points3) = play_connect_four(&benchmark, &initial_seed,false);
+            //for member in &pool{
+          //      println!("net score in pool is {}", &member.points);
+         //   }
+            let (bench_points1, seed_points1) = play_connect_four(&benchmark, &initial_seed,false);
+            let (bench_points2, seed_points2) = play_connect_four(&benchmark, &initial_seed,false);
+            let (bench_points3, seed_points3) = play_connect_four(&benchmark, &initial_seed,false);
+          //  println!(" 1fakehuman points{} ann points{}", bench_points1, seed_points1);
+          //  println!("2fakehuman points{} ann points{}", bench_points2, seed_points2);
+          //  println!("3fakehuman points{} ann points{}", bench_points3, seed_points3);
 
             let mut data = (seed_points1+seed_points2+seed_points3)/3;
-            println!("wrote {} to file", data);
+          //  println!("wrote {} to file, {} won", data, winner_index);
             write_usize(data,&mut scores_file);
 
-            if generation%100 ==0{
+            if generation%500 ==0{
+                pool[winner_index + 1].clone().serialize(format!("GW{}", generation))
 
             }
 
