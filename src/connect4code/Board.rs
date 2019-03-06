@@ -379,7 +379,7 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             if display {
                 println!("game over = {}", game_over);
             }
-            return (84, turns);
+            return (100, turns);
             break;
         }
 
@@ -393,7 +393,7 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             if display {
                 println!("game over = {}", game_over);
             }
-            return (turns,84);
+            return (turns,100);
             break;
         }
 

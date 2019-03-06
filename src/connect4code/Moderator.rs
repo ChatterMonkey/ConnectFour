@@ -17,14 +17,15 @@ use std::fmt::Write;
 use std::io::prelude::*;
 pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
 
-    let mut scores_file = File::create(format!("{}_scores.txt", run_id)).unwrap();
+    let mut benchmark_scores_file = File::create(format!("{}_benchmark_scores.txt", run_id)).unwrap();
+    let mut peer_scores_file = File::create(format!("{}_peer_scores.txt", run_id)).unwrap();
     let benchmark = FakeHuman{};
     let mut initial_seed = starting_net;
 
     let a:f32 = -((0.0001f32).ln())/(NUMBER_OF_GENERATIONS as f32); //adjust the rate of change for the mutation_magnitude
 
 
-    for generation in 0..NUMBER_OF_GENERATIONS{
+    for generation in 0..NUMBER_OF_GENERATIONS+1{
         let gen32 = generation as f32;
 
         let mut pool = vec!(initial_seed);
@@ -87,6 +88,7 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
             //for member in &pool{
           //      println!("net score in pool is {}", &member.points);
          //   }
+            write_usize(initial_seed.points, &mut peer_scores_file);
             let (bench_points1, seed_points1) = play_connect_four(&benchmark, &initial_seed,false);
             let (bench_points2, seed_points2) = play_connect_four(&benchmark, &initial_seed,false);
             let (bench_points3, seed_points3) = play_connect_four(&benchmark, &initial_seed,false);
@@ -100,7 +102,8 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
             let mut data = (seed_points1+seed_points2+seed_points3)/3;
            // println!("data is {}", &data);
           //  println!("wrote {} to file, {} won", data, winner_index);
-            write_usize(data,&mut scores_file);
+            write_usize(data,&mut benchmark_scores_file);
+
 
             if generation%500 ==0{
                 //println!("appending...");
@@ -115,11 +118,8 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
         initial_seed.points = 0;
 
 
-
-
-
-
     }
+
 
     println!("genetic algorithm done");
 
