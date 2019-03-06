@@ -32,7 +32,7 @@ fn main() {
     connect4code::Moderator::execute_genetic_algorithm( starting_net, id_string.to_string());
 
 
-
+    //new comment
     println!("{}", now.elapsed().as_secs());
 
 
