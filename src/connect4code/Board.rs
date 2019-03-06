@@ -56,7 +56,10 @@ pub fn print_board(board: &Board) -> &Board{
 
 
 
-pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> (usize,usize){
+pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> (usize,usize,bool){
+    if check_if_column_is_full(board, move_column){
+        return(0,0,false);
+    }
 
     for y in (0..ROWS).rev(){
         if board.get(y,move_column) == 0.0{
@@ -73,11 +76,11 @@ pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> 
                 }
             }
 
-            return (y,move_column);
+            return (y,move_column,true);
         }
 
     }
-    return (0,move_column);
+    return (0,move_column,true);
 
 
 }
@@ -363,9 +366,15 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
 
 
     while game_over == false{
+        let clone_of_board_before_move = board.clone();
         let player1_move = player1.query(board);
+        //println!("{}", clone_of_board_before_move.is_equal_to(&board));
+
         let player1_tup = place_piece(board,player1_move,Pieces::Player1);
+        turns = turns + 1;
+
         game_over = check_for_win(board, player1_tup.0, player1_tup.1);
+
         if display{
             print_board(board);
             println!("game over = {}", game_over);
@@ -373,8 +382,11 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
         }
 
 
+
         if game_over == true{
-            turns = turns + 1;
+            //print_board(board);
+            //panic!();
+
 
             if display {
                 println!("game over = {}", game_over);
@@ -383,12 +395,23 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             break;
         }
 
-
+        let clone_of_board_before_move = board.clone();
         let player2_move = player2.query(board);
+
+        if display{
+            println!("{}", player2_move);
+        }
         let player2_tup = place_piece(board, player2_move, Pieces::Player2);
+        turns = turns + 1;
+
         game_over = check_for_win(board, player2_tup.0, player2_tup.1);
+        if display{
+            print_board(board);
+            println!("game over = {}", game_over);
+
+        }
         if game_over == true{
-            turns = turns + 1;
+
 
             if display {
                 println!("game over = {}", game_over);
@@ -396,9 +419,12 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             return (turns,100);
             break;
         }
+        if turns == 42{
+            return(42,42);
+        }
 
         //print_board(board);
-        turns = turns + 1;
+
     }
     return (42,42);
 

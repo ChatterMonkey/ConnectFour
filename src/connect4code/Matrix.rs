@@ -9,6 +9,22 @@ use serde::{Serialize, Deserialize};
 
 
 impl matrix{
+    pub fn is_equal_to(&self, matrix:&matrix)-> bool{
+        if (self.cols != matrix.cols) || (self.rows != matrix.rows){
+            return false;
+        }
+        else{
+            for y in 0..self.rows{
+                for x in 0..self.cols{
+                    if self.get(y,x) != matrix.get(y,x){
+                        return false;
+                    }
+                }
+            }
+
+        }
+        return true;
+    }
 
     pub fn zeros_matrix(cols: usize, rows: usize)-> matrix{
         matrix{cols:cols, rows:rows, data: vec![0.0; rows*cols]}

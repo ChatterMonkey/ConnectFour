@@ -84,6 +84,7 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String){
 
 
         if generation%10 == 0 {
+
           //  println!("generation is multiple of 10");
             //for member in &pool{
           //      println!("net score in pool is {}", &member.points);
