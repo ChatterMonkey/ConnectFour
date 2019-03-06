@@ -6,3 +6,4 @@ pub mod Human;
 pub mod Params;
 pub mod Moderator;
 pub mod file_manager;
+pub mod Moderator_benchmark;
