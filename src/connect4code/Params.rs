@@ -1,6 +1,6 @@
 // control shape and number of generations
 pub const GENERATION_SIZE: usize =  19;
-pub const NUMBER_OF_GENERATIONS: usize = 100000;
+pub const NUMBER_OF_GENERATIONS: usize = 10;
 
 
 // ANN parameters

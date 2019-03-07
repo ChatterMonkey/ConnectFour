@@ -25,12 +25,13 @@ use std::thread;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let id_string = &args[1];
+    let end_goal_string = &args[2];
 
-    let mut input_string = String::new();
-    println!("At the 100,000th generation, the mutation magnitude should be:");
-    io::stdin().read_line(&mut input_string).expect("failed to read line");
+//    let mut input_string = String::new();
+//    println!("At the 100,000th generation, the mutation magnitude should be:");
+ //   io::stdin().read_line(&mut input_string).expect("failed to read line");
 
-    let end_goal:f32 = input_string.trim().parse().expect("please enter a value with type f32");
+    let end_goal:f32 = end_goal_string.trim().parse().expect("please enter a value with type f32");
 
 
     let now = Instant::now();

@@ -24,6 +24,7 @@ pub fn execute_benchmark_genetic_algorithm( starting_net:NeuralNet, run_id:Strin
 
     let a:f32 = -((end_target_mutation_magnitude).ln())/(NUMBER_OF_GENERATIONS as f32); //adjust the rate of change for the mutation_magnitude
 
+    println!("Number of generations {}, alpha {}, end target {}", NUMBER_OF_GENERATIONS, a, end_target_mutation_magnitude);
 
     for generation in 0..NUMBER_OF_GENERATIONS+1{
         //println!("next generation {}", generation);
