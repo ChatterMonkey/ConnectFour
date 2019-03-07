@@ -38,9 +38,9 @@ fn main() {
 
 
     //let human = connect4code::Human::Human{ points: 0 };
-    let net_text = connect4code::file_manager::read_text(&String::from("gmins_1.1_GW100000")).unwrap();
+    //let net_text = connect4code::file_manager::read_text(&String::from("gmins_1.1_GW100000")).unwrap();
 
-    let net = connect4code::file_manager::reconstitute(&net_text);
+    //let net = connect4code::file_manager::reconstitute(&net_text);
    // loop{
    //     connect4code::Board::play_connect_four(&human, &net, true);
 
