@@ -9,6 +9,7 @@ use std::io::Read;
 
 
 pub fn reconstitute(text: &String) -> NeuralNet {
+
     let deserialized: NeuralNet = serde_json::from_str(text).unwrap();
     let new_net = deserialized;
     new_net

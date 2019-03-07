@@ -15,14 +15,14 @@ use std::fmt::Write;
 use std::io::prelude::*;
 
 
-pub fn execute_benchmark_genetic_algorithm( starting_net:NeuralNet, run_id:String){
+pub fn execute_benchmark_genetic_algorithm( starting_net:NeuralNet, run_id:String, end_target_mutation_magnitude:f32){// 0.0001f32 before
 
     let mut benchmark_scores_file = File::create(format!("{}_benchmark_scores_bt.txt", run_id)).unwrap();
     let mut peer_scores_file = File::create(format!("{}_peer_scores_bt.txt", run_id)).unwrap();
     let benchmark = FakeHuman{};
     let mut initial_seed = starting_net;
 
-    let a:f32 = -((0.0001f32).ln())/(NUMBER_OF_GENERATIONS as f32); //adjust the rate of change for the mutation_magnitude
+    let a:f32 = -((end_target_mutation_magnitude).ln())/(NUMBER_OF_GENERATIONS as f32); //adjust the rate of change for the mutation_magnitude
 
 
     for generation in 0..NUMBER_OF_GENERATIONS+1{
