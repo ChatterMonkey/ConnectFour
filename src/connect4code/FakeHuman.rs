@@ -128,14 +128,47 @@ pub fn fake_human_query( board: &mut Board)-> usize{
 
     let can_win:(usize,bool) = can_you_win(board, true);
 
+  /*  if !verification_board.is_equal_to(board) {
+        println!("Verification failed for can win!");
+        println!("Modified matrix:");
+        print_board(board);
+        println!("Original matrix:");
+        print_board(&verification_board);
+        panic!();
+    }
+
+   */ //verification
+
     if can_win.1 == true{
         return can_win.0;
     }
     let can_block:(usize,bool) = need_to_block(board);
+
+  /*  if !verification_board.is_equal_to(board) {
+        println!("Verification failed for need to block!");
+        println!("Modified matrix:");
+        print_board(board);
+        println!("Original matrix:");
+        print_board(&verification_board);
+        panic!();
+    }
+*/ //verification
+
     if can_block.1 == true{
         return can_block.0;
     }
     let can_win_in_two_turns:(usize,bool) = can_garentee_next_turn_win(board);
+/*
+    if !verification_board.is_equal_to(board) {
+        println!("Verification failed for can win in two turns!");
+        println!("Modified matrix:");
+        print_board(board);
+        println!("Original matrix:");
+        print_board(&verification_board);
+        panic!();
+    }
+*/ //verification
+
     if can_win_in_two_turns.1 == true{
         //  println!("Can win in two turns");
         return can_win_in_two_turns.0;
