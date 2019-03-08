@@ -50,7 +50,7 @@ fn main() {
 
 
 
-    connect4code::Moderator_benchmark::execute_benchmark_genetic_algorithm( starting_net, id_string.to_string(),end_goal);
+    connect4code::Moderator::execute_genetic_algorithm( starting_net, id_string.to_string(),end_goal);
 
 
     //new comment
