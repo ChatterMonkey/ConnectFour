@@ -62,5 +62,5 @@ file_manager.rs -> Contains functions for managing files
 Params.rs -> Holds all the hyperparameters for the genetic algorithm and the neural networks in one place.'
 
 
-
+ 
 </pre>
