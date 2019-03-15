@@ -6,8 +6,8 @@ Implements a genetic algorithm to produce a resultant neural network designed to
 CODE IMPLEMENTATIONS:
 
 
-main.rs -> Accepts command line inputs as arguments to determine the mutation magnitude of the finnal generation (lower number 						means sharper taper) and takes a name of the run. Mutation magnitude is a decaying exponential as e^{-x*a} where x 						is the generation number and a is the natural logarithm of the value you input, divided by the negation of the
-					 numberof total gernetions being run. 
+main.rs -> Accepts command line inputs as arguments to determine the mutation magnitude of the finnal generation (lower number 		 means sharper taper) and takes a name of the run. Mutation magnitude is a decaying exponential as e^{-x*a} where x 	      is the generation number and a is the natural logarithm of the value you input, divided by the negation of the
+	  number of total gernetions being run. 
 
 To call main.rs, navigate to the ConnectFour directory and type  
 $ cargo run --release folder_name 0.01
