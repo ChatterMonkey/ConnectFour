@@ -4,7 +4,7 @@ Implements a genetic algorithm to produce a resultant neural network designed to
 CODE IMPLEMENTATIONS:
 
 
-main.rs -> Accepts command line inputs as arguments to determine the mutation magnitude of the finnal generation (lower number 						means sharper taper) and takes a name of the run. Mutation magnitude is a decaying exponential as e^{-x*a} where x 						is the generation number and a is the natural logarithm of the value you input, divided by the negation of the
+main.rs - Accepts command line inputs as arguments to determine the mutation magnitude of the finnal generation (lower number 						means sharper taper) and takes a name of the run. Mutation magnitude is a decaying exponential as e^{-x*a} where x 						is the generation number and a is the natural logarithm of the value you input, divided by the negation of the
 					 numberof total gernetions being run. 
 
 To call main.rs, navigate to the ConnectFour directory and type  
@@ -14,12 +14,12 @@ connect4code -> Folder containing files called by main.
 
 mod.rs -> Declares the .rs files in connect4code to be public modules
 
-Matrix.rs -> Functions for handeling matrixes
-					 --> Declares the public struct 'matrix' to be a vector of f32 values, as well as width and height dimentions.
-					 --> zeros_matrix initilized a matrix with 0 in every entry
-					 --> get returns the value of a matrix at (y,x) 
-					 --> set changes the value of a matrix at (y,x)
-					 --> times_a_vector mutipies a matrix by a vector
+Matrix.rs - Functions for handeling matrixes
+					 - Declares the public struct 'matrix' to be a vector of f32 values, as well as width and height dimentions.
+					 - zeros_matrix initilized a matrix with 0 in every entry
+					 - get returns the value of a matrix at (y,x) 
+					 - set changes the value of a matrix at (y,x)
+					 - times_a_vector mutipies a matrix by a vector
 		
 Board.rs -> Manages the Connect Four board.
 					 --> Defines the trait player as an object with 'query' and 'add_win' implementations
