@@ -1,7 +1,7 @@
 # ConnectFour
-
+## Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 <pre>
-Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
+
 
 CODE IMPLEMENTATIONS:
 
@@ -20,7 +20,7 @@ mod.rs -> Declares the .rs files in connect4code to be public modules
 
 Matrix.rs -> Functions for handeling matrixes
               - Declares the public struct 'matrix' to be a vector of f32 values, as well as width and height dimentions.
-              - zeros_matrix initilized a matrix with 0 in every entry
+              - `zeros_matrix` initilized a matrix with 0 in every entry
               - get returns the value of a matrix at (y,x) 
               - set changes the value of a matrix at (y,x)
               - times_a_vector mutipies a matrix by a vector
