@@ -1,7 +1,10 @@
 # ConnectFour
  indent_size = 2
-<pre>
-'Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
+pre {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
 CODE IMPLEMENTATIONS:
 
@@ -60,7 +63,7 @@ file_manager.rs -> Contains functions for managing files
 					 --> write_usize writes a usize to a file
 					 
 					 
-Params.rs -> Holds all the hyperparameters for the genetic algorithm and the neural networks in one place.'
+Params.rs -> Holds all the hyperparameters for the genetic algorithm and the neural networks in one place.
 
 
  
