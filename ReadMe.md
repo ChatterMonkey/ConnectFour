@@ -13,26 +13,26 @@ To call main.rs, navigate to the ConnectFour directory and type
 $ cargo run --release folder_name 0.01
 
 connect4code -> Folder containing files called by main.
-
+ 
 mod.rs -> Declares the .rs files in connect4code to be public modules
 
 Matrix.rs - Functions for handeling matrixes
-					 - Declares the public struct 'matrix' to be a vector of f32 values, as well as width and height dimentions.
-					 - zeros_matrix initilized a matrix with 0 in every entry
-					 - get returns the value of a matrix at (y,x) 
-					 - set changes the value of a matrix at (y,x)
-					 - times_a_vector mutipies a matrix by a vector
+              - Declares the public struct 'matrix' to be a vector of f32 values, as well as width and height dimentions.
+              - zeros_matrix initilized a matrix with 0 in every entry
+              - get returns the value of a matrix at (y,x) 
+              - set changes the value of a matrix at (y,x)
+              - times_a_vector mutipies a matrix by a vector
 		
 Board.rs -> Manages the Connect Four board.
-					 --> Defines the trait player as an object with 'query' and 'add_win' implementations
-					 --> Creates the public enum 'Pieces' which enumerates piece types 'Player1','Player2', and 'Nada'
-					 --> Defines 'Board' type as a matrix, see Matrix.rs
-					 --> print_board function renders type Board in colored ASCCI for human use
-					 --> place_piece function finds the appropriate (y,x) pair given a move in the form of a column 0-6, 
-					     and places a piece there
-					 --> check_for_win recieves a location (y,x) and checks if that piece has won the game.
-					 --> play_connect_four facilitates a game of connectfour between to objects with the Player trait, 
-					 		 and rewards them based of the outcome of the game.
+              - Defines the trait player as an object with 'query' and 'add_win' implementations
+              - Creates the public enum 'Pieces' which enumerates piece types 'Player1','Player2', and 'Nada'
+              - Defines 'Board' type as a matrix, see Matrix.rs
+              - print_board function renders type Board in colored ASCCI for human use
+              - place_piece function finds the appropriate (y,x) pair given a move in the form of a column 0-6, 
+					      and places a piece there
+              - check_for_win recieves a location (y,x) and checks if that piece has won the game.
+              - play_connect_four facilitates a game of connectfour between to objects with the Player trait, 
+					 		  and rewards them based of the outcome of the game.
 
 FakeHuman.rs -> Implements a logic based human simulator. Struct FakeHuman implements the Player trait.
 
