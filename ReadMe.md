@@ -1,4 +1,5 @@
 # ConnectFour
+ indent_size = 2
 <pre>
 'Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
