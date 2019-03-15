@@ -29,10 +29,10 @@ Board.rs -> Manages the Connect Four board.
               - Defines 'Board' type as a matrix, see Matrix.rs
               - print_board function renders type Board in colored ASCCI for human use
               - place_piece function finds the appropriate (y,x) pair given a move in the form of a column 0-6, 
-					      and places a piece there
+		and places a piece there
               - check_for_win recieves a location (y,x) and checks if that piece has won the game.
               - play_connect_four facilitates a game of connectfour between to objects with the Player trait, 
-					 		  and rewards them based of the outcome of the game.
+		and rewards them based of the outcome of the game.
 
 FakeHuman.rs -> Implements a logic based human simulator. Struct FakeHuman implements the Player trait.
 
@@ -40,24 +40,24 @@ Human.rs -> Implements the Player trait for a human user, allowing me to persona
 						and any neural network.
 
 NeuralNet.rs -> Simulates a neural network 
-					 --> Defines the public struct NeuralNet as having a name, point value, and four weight matrices
-					 --> Creates the public enum 'Layers' which enumerates layer types 'WIH1','WH1H2', 'WH2H3', and 'WH3O'
-					 --> sigmoid applies the sigmoid function to every entry in a vector (used to simulate nodes)
-					 --> find_max_entry finds the maximum entry in a vector 
-					     (used to determine the neural network's answer to a query)
-					 --> Implementations for NeuralNet include 
-					 				--> mutate, which changes every weight in each weight matrix by a random value within the 
-									    given mutation magnitude
-									--> zeros_neural_net, which initilizes a neural network with a zeros_matrix of the 
-									    appropreate size as every weight matrix
-									--> serialize, which uses the serde crate to write this neural network to a file
-					 --> The neural network struct also has the Player trait, and uses times_a_vector and sigmoid to 
-					     implement the querying of a digital neural network.
+              - Defines the public struct NeuralNet as having a name, point value, and four weight matrices
+              - Creates the public enum 'Layers' which enumerates layer types 'WIH1','WH1H2', 'WH2H3', and 'WH3O'
+              - sigmoid applies the sigmoid function to every entry in a vector (used to simulate nodes)
+              - find_max_entry finds the maximum entry in a vector 
+		(used to determine the neural network's answer to a query)
+              - Implementations for NeuralNet include 
+              - mutate, which changes every weight in each weight matrix by a random value within the 
+		given mutation magnitude
+              - zeros_neural_net, which initilizes a neural network with a zeros_matrix of the 
+		appropreate size as every weight matrix
+              - serialize, which uses the serde crate to write this neural network to a file
+              - The neural network struct also has the Player trait, and uses times_a_vector and sigmoid to 
+		implement the querying of a digital neural network.
 file_manager.rs -> Contains functions for managing files				
-					 --> Reconstitute uses the serde crate to read a neural network from a file and recreate it
-					 --> write_text writes text to a file
-					 --> read_text reads text from a file
-					 --> write_usize writes a usize to a file
+              - Reconstitute uses the serde crate to read a neural network from a file and recreate it
+              - write_text writes text to a file
+              - read_text reads text from a file
+              - write_usize writes a usize to a file
 					 
 					 
 Params.rs -> Holds all the hyperparameters for the genetic algorithm and the neural networks in one place.
