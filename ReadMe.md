@@ -1,6 +1,6 @@
 # ConnectFour
 
-<pre {}>
+<pre {tab-size:2}>
 Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
 CODE IMPLEMENTATIONS:
