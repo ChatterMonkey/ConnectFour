@@ -1,9 +1,6 @@
 # ConnectFour
  indent_size = 2
-pre {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
+pre { tab-size: 2}
 Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
 CODE IMPLEMENTATIONS:
