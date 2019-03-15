@@ -1,4 +1,5 @@
 # ConnectFour
+<pre>
 'Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
 CODE IMPLEMENTATIONS:
@@ -62,3 +63,4 @@ Params.rs -> Holds all the hyperparameters for the genetic algorithm and the neu
 
 
 
+</pre>
