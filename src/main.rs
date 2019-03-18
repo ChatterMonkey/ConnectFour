@@ -23,6 +23,11 @@ use std::thread;
 
 
 fn main() {
+    let net_text = connect4code::file_manager::read_text(&String::from("/Users/mayabasu/CLionProject/ConnectFour/hexapod/arm1_GW1000000")).unwrap();
+    let net = connect4code::file_manager::reconstitute(&net_text);
+    let human = connect4code::Human::Human{points:0};
+    let fakehuman = connect4code::FakeHuman::FakeHuman{};
+    connect4code::Board::play_connect_four(&human,&fakehuman,true);
     let args: Vec<String> = env::args().collect();
     let id_string = &args[1];
     let end_goal_string = &args[2];

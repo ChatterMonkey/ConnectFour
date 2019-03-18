@@ -374,7 +374,6 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
         turns = turns + 1;
 
         game_over = check_for_win(board, player1_tup.0, player1_tup.1);
-
         if display{
             print_board(board);
             println!("game over = {}", game_over);
@@ -382,11 +381,8 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
         }
 
 
-
         if game_over == true{
-            //print_board(board);
-            //panic!();
-
+            turns = turns + 1;
 
             if display {
                 println!("game over = {}", game_over);
@@ -410,8 +406,11 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             println!("game over = {}", game_over);
 
         }
+        if display{
+            print_board(board);
+        }
         if game_over == true{
-
+            turns = turns + 1;
 
             if display {
                 println!("game over = {}", game_over);
@@ -424,7 +423,7 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
         }
 
         //print_board(board);
-
+        turns = turns + 1;
     }
     return (42,42);
 
