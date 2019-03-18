@@ -5,15 +5,17 @@ Implements a genetic algorithm to produce a resultant neural network designed to
 ![Diagram of neural network](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/images/neuralNetwork_diagram.jpeg)
 
 
+A Neural network consists of hidden layers sandwiched between input and output layers. Each neuron in a given layer is connected to every neuron in the next layer. These pathways are moderated by link weights, the values of which determine how the neural network behaves. The neural network is queried by giving values to the input neurons. When these values travel along the connections to the next layer, they are multiplied by the link weight of the associated link. In the next layer, each neuron sums the values it receives from the previous layer and applies the sigmoid function `y = 1/(1 + e^(-x))`. This process is repeated, and the values at the output neurons are the neural network’s answer to the query.
 
 
 
 
+https://www.youtube.com/watch?v=HEfHFsfGXjs[(https://www.youtube.com/watch?v=HEfHFsfGXjs)
 
 
 
 
-
+[![IMAGE ALT TEXT](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/images/neuralNetwork_diagram.jpeg)](https://www.youtube.com/watch?v=HEfHFsfGXjs)
 
 
 
