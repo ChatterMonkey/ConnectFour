@@ -10,12 +10,12 @@ In this file, you will find
 For the files referenced in the [code implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations) section, please see [connect4code under src](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src/connect4code) in my repository.
 
 
-##Project Walk Through
+## Project Walk Through
 
 Please click here: [Link to my video](https://www.youtube.com/watch?v=MCsVVSn5-bU )
  or search https://www.youtube.com/watch?v=MCsVVSn5-bU  to view my video on YouTube.
  
- ##What is a Neural Network?
+ ## What is a Neural Network?
 
 ![Diagram of neural network](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/images/neuralNetwork_diagram.jpeg)
 
@@ -29,7 +29,7 @@ A Neural network consists of hidden layers sandwiched between input and output l
 
 
 
-##CODE IMPLEMENTATIONS
+## CODE IMPLEMENTATIONS
 
 
 #### main.rs
@@ -96,7 +96,7 @@ Holds all the hyperparameters for the genetic algorithm and the neural networks 
 
 
 
-##References
+## References
 
 Books:
 * Rust reference book
