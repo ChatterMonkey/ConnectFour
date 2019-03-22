@@ -1,6 +1,21 @@
 # ConnectFour
 Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
+In this file, you will find 
+ * [Project walkthrough](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#projectwalkthrough)
+ * [What is a Neural Network?](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#whatisaneuralnetwork)
+ * [Code Implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations)
+ * [References](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#references)
+
+For the files referenced in the [code implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations) section, please see [connect4code under src](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src/connect4code) in my repository.
+
+
+##Project Walk Through
+
+Please click here: [Link to my video](https://www.youtube.com/watch?v=MCsVVSn5-bU )
+ or search https://www.youtube.com/watch?v=MCsVVSn5-bU  to view my video on YouTube.
+ 
+ ##What is a Neural Network?
 
 ![Diagram of neural network](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/images/neuralNetwork_diagram.jpeg)
 
@@ -10,20 +25,11 @@ A Neural network consists of hidden layers sandwiched between input and output l
 
 
 
-https://www.youtube.com/watch?v=HEfHFsfGXjs[(https://www.youtube.com/watch?v=HEfHFsfGXjs)
 
 
 
 
-[![IMAGE ALT TEXT](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/images/neuralNetwork_diagram.jpeg)](https://www.youtube.com/watch?v=HEfHFsfGXjs)
-
-
-
-
-
-
-
-**CODE IMPLEMENTATIONS**
+##CODE IMPLEMENTATIONS
 
 
 #### main.rs
@@ -85,5 +91,75 @@ Contains functions for managing files
 					 
 #### Params.rs
 Holds all the hyperparameters for the genetic algorithm and the neural networks in one place.
+
+
+
+
+
+##References
+
+Books:
+* Rust reference book
+* Make your own neural network
+* Text adventure game in python
+
+Github page, python code
+https://github.com/makeyourownneuralnetwork/makeyourownneuralnetwork/blob/master/part3_neural_network_mnist_data_with_rotations.ipynb 
+
+Google tensorflow info
+https://developers.google.com/machine-learning/crash-course/first-steps-with-tensorflow/toolkit 
+
+AlphaGo site
+https://deepmind.com/blog/alphago-zero-learning-scratch/
+
+Tic tac toe neural network
+https://users.auth.gr/kehagiat/Research/GameTheory/12CombBiblio/TicTacToe.pdf
+
+MIT info about networks
+https://www.technologyreview.com/s/513696/deep-learning/
+
+Genetic algorithm
+https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164
+
+Yann LeCun, with minst training and test sets
+http://yann.lecun.com
+
+Blog post
+https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164
+
+
+AlphaGo vs Lee Sedol Match
+https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol
+
+AlphaZero
+https://www.nytimes.com/2018/12/26/science/chess-artificial-intelligence.html
+
+Very helpful info on ndarray crate
+https://docs.rs/ndarray/*/ndarray/doc/ndarray_for_numpy_users/index.html
+
+Checkers term project
+http://www.cs.uwc.ac.za/~dboonzaaier/docs/projterm4.pdf
+
+Scholarly Articles:
+
+https://www.ijcai.org/Proceedings/89-1/Papers/122.pdf
+
+https://ieeexplore.ieee.org/abstract/document/273950
+
+https://ieeexplore.ieee.org/abstract/document/784219
+
+https://www.sciencedirect.com/science/article/pii/S0378437100004799
+
+http://www.cs.bham.ac.uk/~xin/papers/published_iproc_sep99.pdf
+
+
+http://repository.bilkent.edu.tr/bitstream/handle/11693/24903/Using%20genetic%20algorithms%20to%20select%20architecture%20of%20a%20feedforward%20artificial%20neural%20network.pdf?sequence=1 
+
+
+
+https://ieeexplore.ieee.org/abstract/document/155366
+
+
+
 
 :octocat: 
