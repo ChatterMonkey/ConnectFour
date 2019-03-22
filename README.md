@@ -7,7 +7,7 @@ In this file, you will find
  * [Code Implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#code-implementations)
  * [References](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#references)
 
-For the files referenced in the [code implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations) section, please see [connect4code under src](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src/connect4code) in my repository.
+For the files referenced in the [code implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations) section, please see [connect4code under src](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src/connect4code) in my repository. (to read main.rs, go here, one directory up: [main.rs](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src))
 
 
 ## Project Walk Through
