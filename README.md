@@ -24,7 +24,7 @@ A Neural network consists of hidden layers sandwiched between input and output l
 
 
 
-
+ 
 
 
 
