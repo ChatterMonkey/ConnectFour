@@ -2,9 +2,9 @@
 Implements a genetic algorithm to produce a resultant neural network designed to play Connect Four.
 
 In this file, you will find 
- * [Project walkthrough](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#projectwalkthrough)
- * [What is a Neural Network?](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#whatisaneuralnetwork)
- * [Code Implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations)
+ * [Project walkthrough](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#project-walk-through)
+ * [What is a Neural Network?](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#what-is-a-neural-network)
+ * [Code Implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#code-implementations)
  * [References](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#references)
 
 For the files referenced in the [code implementations](https://github.com/ChatterMonkey/ConnectFour/blob/Simple_Model_fixed/README.md#codeimplementations) section, please see [connect4code under src](https://github.com/ChatterMonkey/ConnectFour/tree/Simple_Model_fixed/src/connect4code) in my repository.
