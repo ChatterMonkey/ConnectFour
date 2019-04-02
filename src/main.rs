@@ -19,7 +19,7 @@ use std::time::{Duration, Instant};
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 use std::thread;
-use std::time::Duration;
+//use std::time::Duration;
 
 
 fn main() {
