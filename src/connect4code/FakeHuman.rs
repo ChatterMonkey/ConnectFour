@@ -32,7 +32,7 @@ pub fn fake_human_query( original_board: &Board)-> usize{
     fn can_you_win(board_address: &mut Board, search_left_to_right: bool)-> (usize, bool) {
         if search_left_to_right == true {
             for winning_move_q in 0..COLUMNS  {
-                let tup: (usize, usize, bool) = place_piece(board_address, winning_move_q, Pieces::Player2);
+                let tup: (usize, usize, bool) = place_piece(board_address, winning_move_q, Pieces::Player1);
                 if !tup.2{
                     continue;
                 }
@@ -50,7 +50,7 @@ pub fn fake_human_query( original_board: &Board)-> usize{
         }
         else {
             for winning_move_q  in (0..COLUMNS).rev(){
-                let tup: (usize, usize,bool) = place_piece(board_address,winning_move_q, Pieces::Player2);
+                let tup: (usize, usize,bool) = place_piece(board_address,winning_move_q, Pieces::Player1);
                 if !tup.2{
                     continue;
                 }
@@ -75,7 +75,7 @@ pub fn fake_human_query( original_board: &Board)-> usize{
 
 
         for blocking_move_q  in 0..COLUMNS{
-            let tup: (usize, usize, bool) = place_piece(board_address,blocking_move_q, Pieces::Player1);
+            let tup: (usize, usize, bool) = place_piece(board_address,blocking_move_q, Pieces::Player2);
             if !tup.2{
                 continue;
             }
@@ -95,14 +95,14 @@ pub fn fake_human_query( original_board: &Board)-> usize{
     //Garentee a win next turn
     fn can_garentee_next_turn_win(board_address: &mut Board)-> (usize, bool){
         for first_move in 0..COLUMNS {
-            let first_move_tup: (usize, usize,bool) = place_piece(board_address, first_move, Pieces::Player2);
+            let first_move_tup: (usize, usize,bool) = place_piece(board_address, first_move, Pieces::Player1);
             if !first_move_tup.2{
                 continue;
             }
             let mut opponent_can_win = false;
 
             for winning_o_move in 0..COLUMNS  {
-                let tup: (usize, usize,bool) = place_piece(board_address, winning_o_move, Pieces::Player1);
+                let tup: (usize, usize,bool) = place_piece(board_address, winning_o_move, Pieces::Player2);
                 if !tup.2{
                     continue;
                 }

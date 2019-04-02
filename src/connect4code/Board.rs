@@ -32,13 +32,13 @@ pub fn print_board(board: &Board) -> &Board{
                 write!(&mut stdout, "( )");
 
             }
-            if board.get(y,x) == -0.5{
+            if board.get(y,x) == -1.0{
                 let mut stdout = StandardStream::stdout(ColorChoice::Always);
                 stdout.set_color(ColorSpec::new().set_fg(Some(Color::Red)))
                     .expect("Could not set color, error.");
                 write!(&mut stdout, "(0)");
             }
-            if board.get(y,x) == 0.5{
+            if board.get(y,x) == 1.0{
                 let mut stdout = StandardStream::stdout(ColorChoice::Always);
                 stdout.set_color(ColorSpec::new().set_fg(Some(Color::Blue)))
                     .expect("Could not set color, error.");
@@ -66,10 +66,10 @@ pub fn place_piece( board:&mut Board, move_column:usize, piece_type: Pieces) -> 
 
             match piece_type{
                 Pieces::Player1 => {
-                    board.set(y,move_column,0.5);
+                    board.set(y,move_column,1.0);
                 }
                 Pieces::Player2 => {
-                    board.set(y,move_column,-0.5);
+                    board.set(y,move_column,-1.0);
                 }
                 Pieces::Nada => {
                     board.set(y, move_column,0.0);
@@ -366,7 +366,9 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
 
 
     while game_over == false{
-        let clone_of_board_before_move = board.clone();
+      // let clone_of_board_before_move = board.clone();
+
+        //COMMENCE THE TURN OF PLAYER ONE
         let player1_move = player1.query(board);
         //println!("{}", clone_of_board_before_move.is_equal_to(&board));
 
@@ -390,14 +392,29 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
             return (100, turns);
             break;
         }
+        //COMMENCE THE TURN OF PLAYER TWO
+        if display{
+            println!("original board:");
+            print_board(board);
+            println!("times -1: ");
 
-        let clone_of_board_before_move = board.clone();
+            board.times_a_constant(-1.0);
+            print_board(board);
+
+        }
+        else{
+            board.times_a_constant(-1.0);
+
+        }
+
+
+        //let clone_of_board_before_move = board.clone();
         let player2_move = player2.query(board);
 
         if display{
             println!("{}", player2_move);
         }
-        let player2_tup = place_piece(board, player2_move, Pieces::Player2);
+        let player2_tup = place_piece(board, player2_move, Pieces::Player1);
         turns = turns + 1;
 
         game_over = check_for_win(board, player2_tup.0, player2_tup.1);
@@ -424,6 +441,19 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
 
         //print_board(board);
         turns = turns + 1;
+        if display{
+            println!("original board:");
+            print_board(board);
+            println!("times -1: ");
+            board.times_a_constant(-1.0);
+            print_board(board);
+        }
+        else{
+            board.times_a_constant(-1.0);
+
+        }
+
+
     }
     return (42,42);
 

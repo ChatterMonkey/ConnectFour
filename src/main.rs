@@ -19,15 +19,24 @@ use std::time::{Duration, Instant};
 use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 use std::thread;
-//use std::time::Duration;
+use std::time::Duration;
 
 
 fn main() {
-    let net_text = connect4code::file_manager::read_text(&String::from("/Users/mayabasu/CLionProject/ConnectFour/final_final_poof/arm2_GW100000")).unwrap();
-    let net = connect4code::file_manager::reconstitute(&net_text);
-    let human = connect4code::Human::Human{points:0};
-    let fakehuman = connect4code::FakeHuman::FakeHuman{};
-    connect4code::Board::play_connect_four(&human,&net,true);
+//   let net_text = connect4code::file_manager::read_text(&String::from("/Users/mayabasu/CLionProject/ConnectFour/fixed_inputs_0.001_GW100000")).unwrap();
+ //   let net = connect4code::file_manager::reconstitute(&net_text);
+ //   let human = connect4code::Human::Human{points:0};
+ //   let fakehuman = connect4code::FakeHuman::FakeHuman{};
+ //   loop{
+ //       connect4code::Board::play_connect_four(&human,&net,true);
+ //       connect4code::Board::play_connect_four(&net,&human,true);
+
+ //   }
+
+    /*
+    connect4code::Board::play_connect_four(&human,&fakehuman,true);
+    connect4code::Board::play_connect_four(&fakehuman,&human,true);
+*/
     let args: Vec<String> = env::args().collect();
     let id_string = &args[1];
     let end_goal_string = &args[2];

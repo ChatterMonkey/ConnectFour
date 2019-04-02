@@ -68,6 +68,15 @@ impl matrix{
         }
         return vector;
     }
+
+    pub fn times_a_constant(&mut self, c: f32){
+        for row in 0..self.rows{
+            for column in 0..self.cols{
+                &mut self.set(row, column, self.get(row, column)*c);
+            }
+        }
+    }
+
     pub fn print_matrix(&self){
         for y in 0..self.rows {
             for x in 0..self.cols {
@@ -78,6 +87,7 @@ impl matrix{
         }
         println!();
     }
+
 
 }
 
