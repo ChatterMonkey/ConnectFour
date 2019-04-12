@@ -109,6 +109,15 @@ impl Player for NeuralNet{
             }
 
         }
+        let mut possible_move = false;
+        for output in 0..final_outputs_copy.len(){
+            if final_outputs_copy[output] != -100.0{
+                possible_move = true;
+            }
+        }
+        if possible_move == false{
+            println!("A NEURAL NETWORK HAS NO MOVE TO MAKE!")
+        }
 
 
         let (value, answer)= find_max_entry(&final_outputs_copy);

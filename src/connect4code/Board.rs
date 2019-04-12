@@ -362,99 +362,132 @@ pub fn play_connect_four<P1: Player, P2: Player>(player1:&P1, player2:&P2, displ
 
     let board = &mut matrix::zeros_matrix(COLUMNS,ROWS);
     let mut game_over = false;
+    let mut tie = false;
     let mut turns:usize = 0;
 
 
     while game_over == false{
-      // let clone_of_board_before_move = board.clone();
+
 
         //COMMENCE THE TURN OF PLAYER ONE
-        let player1_move = player1.query(board);
-        //println!("{}", clone_of_board_before_move.is_equal_to(&board));
 
-        let player1_tup = place_piece(board,player1_move,Pieces::Player1);
-        turns = turns + 1;
 
-        game_over = check_for_win(board, player1_tup.0, player1_tup.1);
-        if display{
-            print_board(board);
-            println!("game over = {}", game_over);
 
+        // Check for tie
+        tie = check_for_tie(board);
+
+
+
+        if tie == true{
+            if display == true{
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("Therein exists a tie!         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+
+            }
+
+            break;
         }
 
 
-        if game_over == true{
-            turns = turns + 1;
+        //Show board
+        if display{
+            print_board(board);
+        }
 
+        turns = turns + 1;
+
+        let player1_move = player1.query(board);
+        let player1_tup = place_piece(board,player1_move,Pieces::Player1);
+
+
+        game_over = check_for_win(board, player1_tup.0, player1_tup.1);
+
+
+        if game_over == true{
             if display {
-                println!("game over = {}", game_over);
+                println!("The game has been won! Sacked, by the Anglo Saxons!");
             }
             return (100, turns);
             break;
         }
+
+        //prepare for the next player
+        board.times_a_constant(-1.0);
+
+
+
+
+
+
+
         //COMMENCE THE TURN OF PLAYER TWO
-        if display{
-            println!("original board:");
-            print_board(board);
-            println!("times -1: ");
-
-            board.times_a_constant(-1.0);
-            print_board(board);
-
-        }
-        else{
-            board.times_a_constant(-1.0);
-
-        }
 
 
-        //let clone_of_board_before_move = board.clone();
-        let player2_move = player2.query(board);
+        //Check for tie
+        tie = check_for_tie(&board);
 
-        if display{
-            println!("{}", player2_move);
-        }
-        let player2_tup = place_piece(board, player2_move, Pieces::Player1);
-        turns = turns + 1;
 
-        game_over = check_for_win(board, player2_tup.0, player2_tup.1);
-        if display{
-            print_board(board);
-            println!("game over = {}", game_over);
+        if tie{
+            if display == true{
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("");
+                println!("Therein exists a tie!         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
 
-        }
-        if display{
-            print_board(board);
-        }
-        if game_over == true{
-            turns = turns + 1;
-
-            if display {
-                println!("game over = {}", game_over);
             }
-            return (turns,100);
+
             break;
         }
-        if turns == 42{
-            return(42,42);
-        }
 
-        //print_board(board);
-        turns = turns + 1;
+
+
+
+        //Show board
         if display{
-            println!("original board:");
-            print_board(board);
-            println!("times -1: ");
-            board.times_a_constant(-1.0);
             print_board(board);
         }
-        else{
-            board.times_a_constant(-1.0);
 
+        turns = turns + 1;
+
+
+        let player2_move = player2.query(board);
+        let player2_tup = place_piece(board, player2_move, Pieces::Player1);
+
+
+
+        game_over = check_for_win(board, player2_tup.0, player2_tup.1);
+
+        if game_over == true{
+            if display {
+                println!("The game has been won! Sacked, by the Anglo Saxons!");
+            }
+            return (turns, 100);
+            break;
         }
+
+
+
+        //prepare for next player
+
+        board.times_a_constant(-1.0);
+
+
 
 
     }
+    println!("RETURNING 42,42");
     return (42,42);
 
 
@@ -466,3 +499,13 @@ pub fn check_if_column_is_full(board:&Board, possible_move:usize)-> bool {
 }
 
 
+pub fn check_for_tie(board:&Board) -> bool{
+    let mut tie = true;
+    for column in 0..COLUMNS{
+        if check_if_column_is_full(board, column) == false{
+            tie = false
+        }
+    }
+
+    return tie;
+}

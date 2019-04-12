@@ -205,7 +205,7 @@ pub fn fake_human_query( original_board: &Board)-> usize{
         loop {
             let randint = random_integer::random_usize(0, COLUMNS-1);
 
-            no_legal_move = check_if_column_is_full(board,randint);
+            no_legal_move = check_if_column_is_full(&board_copy,randint);
             if no_legal_move == false{
                 return randint;
             }

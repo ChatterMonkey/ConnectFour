@@ -12,6 +12,6 @@ random-integer = "1.0.2"
 rand = "0.6.5"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.38"
-
-
+dimensioned = "0.7.0"
+beep = "0.2.1"
 file = "1.1.2"
