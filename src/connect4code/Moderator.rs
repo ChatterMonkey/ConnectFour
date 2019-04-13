@@ -15,7 +15,7 @@ use super::file_manager::*;
 use std::fs::*;
 use std::fmt::Write;
 use std::io::prelude::*;
-
+//usless comment
 
 pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String, end_target_mutation_magnitude:f32, starting_generation: usize){// 0.0001f32 before
     println!("starting genetic algorithm...");
