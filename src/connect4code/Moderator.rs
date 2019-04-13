@@ -18,12 +18,15 @@ use std::io::prelude::*;
 
 
 pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String, end_target_mutation_magnitude:f32, starting_generation: usize){// 0.0001f32 before
-    println!("starting genetic algorithm");
+    println!("starting genetic algorithm...");
     println!("the run id is {}", run_id);
     let mut benchmark_scores_file = File::create(format!("{}_benchmark_scores_bt.txt", run_id)).unwrap();
-    println!("created file for benchmark scores");
+    println!("created file for benchmark scores called '{}'",format!("{}_benchmark_scores_bt.txt", run_id));
     let mut peer_scores_file = File::create(format!("{}_peer_scores_bt.txt", run_id)).unwrap();
-    println!("created file for peer scores");
+    println!("created file for peer scores '{}'",format!("{}_peer_scores_bt.txt", run_id));
+
+
+
     let benchmark = FakeHuman{};
     let mut initial_seed = starting_net;
 
@@ -32,9 +35,7 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String, end_tar
     println!("Number of generations {}, alpha {}, end target {}", NUMBER_OF_GENERATIONS, a, end_target_mutation_magnitude);
 
     for generation in starting_generation..NUMBER_OF_GENERATIONS+1{
-        println!("generation #{}", generation);
-        //println!("next generation {}", generation);
-        // create the pool
+
         let gen32 = generation as f32;
 
         let mut pool = vec!(initial_seed);
@@ -55,7 +56,7 @@ pub fn execute_genetic_algorithm( starting_net:NeuralNet, run_id:String, end_tar
 
 
             seed_copy.name = net_name;
-            seed_copy.clone().serialize(format!("{}_intermediate_test_generation_{}_net_{}", run_id, generation, member));
+            //seed_copy.clone().serialize(format!("{}_intermediate_test_generation_{}_net_{}", run_id, generation, member));
 
             pool.push(seed_copy);
 

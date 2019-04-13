@@ -28,8 +28,8 @@ use dimensioned::si;
 
 
 fn main() {
-    println!("Even later than 'Latest version' ");
-
+    println!("Even later than 'Even later than 'Latest version''. Ha. ");
+    /*
     let net_text = connect4code::file_manager::read_text(&String::from("/Users/mayabasu/CLionProject/ConnectFour/cephalopod/arm1_GW366000")).unwrap();
     let net = connect4code::file_manager::reconstitute(&net_text);
     let net2_text = connect4code::file_manager::read_text(&String::from("/Users/mayabasu/CLionProject/ConnectFour/cephalopod/arm2_GW317500")).unwrap();
@@ -38,7 +38,7 @@ fn main() {
     let human2 = connect4code::Human::Human{points:0};
     let fakehuman = connect4code::FakeHuman::FakeHuman{};
     let fakehuman2 = connect4code::FakeHuman::FakeHuman{};
-
+    */
    //Un comment from here
 
     let args: Vec<String> = env::args().collect();
@@ -74,12 +74,11 @@ fn main() {
    //     connect4code::Board::play_connect_four(&human, &net, true);
 
   //  }
-   // let starting_net = connect4code::NeuralNet::NeuralNet::zeros_neural_net();
+    let starting_net = connect4code::NeuralNet::NeuralNet::zeros_neural_net();
 
    // also UNCOMMENT!
 
-    let starting_net = net;
-    let starting_generation = 366000;
+    let starting_generation = 1;
 
 
     connect4code::Moderator::execute_genetic_algorithm( starting_net, id_string.to_string(),end_goal, starting_generation);
@@ -89,7 +88,7 @@ fn main() {
 
 
     //new comment
-    //println!("{}", now.elapsed().as_secs());
+    println!("Time to run: {}s", now.elapsed().as_secs());
 
 
 
